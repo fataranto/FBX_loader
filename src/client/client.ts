@@ -6,9 +6,9 @@ import Stats from 'three/examples/jsm/libs/stats.module'
 const scene = new THREE.Scene()
 //scene.add(new THREE.AxesHelper(5)) // uncomment to show axes
 
-const light = new THREE.PointLight()
+/* const light = new THREE.PointLight()
 light.position.set(0.8, 1.4, 1.0)
-scene.add(light)
+scene.add(light) */
 
 const ambientLight = new THREE.AmbientLight()
 scene.add(ambientLight)
@@ -19,9 +19,17 @@ const camera = new THREE.PerspectiveCamera(
     0.1,
     1000
 )
-camera.position.set(0.8, 1.4, 1.0)
+camera.position.set(3.5, 3.5, 3.5)
 
 const renderer = new THREE.WebGLRenderer()
+
+//define main (suka) colors
+const primary = 0x33BDC7;
+const shadeLight = 0xAFE4E7;
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setClearColor(shadeLight, 1); // light blue background
+
+
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
 
@@ -82,3 +90,9 @@ function render() {
 }
 
 animate()
+
+//automatically rotate the model
+ setInterval(() => {
+     scene.rotation.y += 0.001
+ }, 10)
+
